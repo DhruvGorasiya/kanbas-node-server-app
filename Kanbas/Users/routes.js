@@ -26,7 +26,7 @@ export default function UserRoutes(app) {
         }
         const currentUser = dao.createUser(req.body);
         req.session.save(() => {
-            req.session.currentUser = currentUser;
+            req.session["currentUser"] = currentUser;
             console.log(req.session.currentUser);
             res.json(currentUser);
         })
@@ -40,7 +40,7 @@ export default function UserRoutes(app) {
         console.log("currentUser", currentUser);
         if (currentUser) {
             req.session.save(() => {
-                req.session.currentUser = currentUser;
+                req.session["currentUser"] = currentUser;
                 res.json(currentUser);
             })
         } else {
@@ -65,7 +65,7 @@ export default function UserRoutes(app) {
     const findCoursesForEnrolledUser = (req, res) => {
         let { userId } = req.params;
         if (userId === "current") {
-            console.log(req.session.currentUser);
+            console.log(req.session["currentUser"]);
             const currentUser = req.session["currentUser"];
             console.log("Che k nai bhai", currentUser);
             if (!currentUser) {
