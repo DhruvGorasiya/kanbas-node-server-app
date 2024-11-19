@@ -67,7 +67,7 @@ export default function UserRoutes(app) {
         if (userId === "current") {
             console.log(req.session.currentUser);
             const currentUser = req.session["currentUser"];
-            console.log("currentUser", currentUser);
+            console.log("Che k nai bhai", currentUser);
             if (!currentUser) {
                 res.sendStatus(401);
                 return;
