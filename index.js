@@ -24,7 +24,6 @@ const sessionOptions = {
 };
 
 console.log("NODE_ENV: ", process.env.NODE_ENV);
-console.log("NODE_SERVER_DOMAIN: ", process.env.NODE_SERVER_DOMAIN);
 
 if (process.env.NODE_ENV !== "development") {
     console.log("NODE_SERVER_DOMAIN: ", process.env.NODE_SERVER_DOMAIN);
@@ -32,7 +31,7 @@ if (process.env.NODE_ENV !== "development") {
     sessionOptions.cookie = {
         sameSite: "none",
         secure: true,
-        domain: process.env.NODE_SERVER_DOMAIN,
+        // domain: process.env.NODE_SERVER_DOMAIN,
     };
 }
 
