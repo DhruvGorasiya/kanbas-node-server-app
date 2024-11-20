@@ -6,7 +6,7 @@ import session from "express-session";
 import "dotenv/config";
 import UserRoutes from "./Kanbas/Users/routes.js";
 import CourseRoutes from "./Kanbas/Courses/routes.js";
-import ModuleRoutes from "./Kanbas/Modules/routes.js";  
+import ModuleRoutes from "./Kanbas/Modules/routes.js";
 import AssignmentRoutes from "./Kanbas/Assignments/routes.js";
 
 const app = express()
@@ -51,8 +51,13 @@ if (process.env.NODE_ENV !== "development") {
     sessionOptions.proxy = true;
 }
 
+if (process.env.NODE_ENV !== "development") {
+    app.set("trust proxy", 1);
+}
+
+
 app.use(session(sessionOptions));
-  
+
 app.use((req, res, next) => {
     console.log("Session ID: ", req.sessionID);
     console.log("Session Data: ", req.session);
