@@ -31,7 +31,8 @@ if (process.env.NODE_ENV !== "development") {
     sessionOptions.cookie = {
         sameSite: "none",
         secure: true,
-        domain: process.env.NODE_SERVER_DOMAIN,
+        httpOnly: true,
+        // domain: process.env.NODE_SERVER_DOMAIN,
     };
 }
 
