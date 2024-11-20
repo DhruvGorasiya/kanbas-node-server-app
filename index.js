@@ -23,6 +23,8 @@ const sessionOptions = {
     saveUninitialized: false,
 };
 
+console.log("NODE_ENV: ", process.env.NODE_ENV);
+
 if (process.env.NODE_ENV !== "development") {
     console.log("NODE_SERVER_DOMAIN: ", process.env.NODE_SERVER_DOMAIN);
     sessionOptions.proxy = true;
