@@ -17,52 +17,24 @@ app.use(cors({
 }));
 
 
-// const sessionOptions = {
-//     secret: process.env.SESSION_SECRET || "kanbas",
-//     resave: false,
-//     saveUninitialized: false,
-// };
-
-// console.log("NODE_ENV: ", process.env.NODE_ENV);
-
-// if (process.env.NODE_ENV !== "development") {
-//     console.log("NODE_SERVER_DOMAIN: ", process.env.NODE_SERVER_DOMAIN);
-//     sessionOptions.proxy = true;
-//     sessionOptions.cookie = {
-//         sameSite: "none",
-//         secure: true,
-//         httpOnly: true,
-//         // domain: process.env.NODE_SERVER_DOMAIN,
-//     };
-// }
-
 const sessionOptions = {
     secret: process.env.SESSION_SECRET || "kanbas",
     resave: false,
     saveUninitialized: false,
-    cookie: {
-        secure: process.env.NODE_ENV !== "development",
-        sameSite: "none",
-        httpOnly: true,
-    },
 };
 
+console.log("NODE_ENV: ", process.env.NODE_ENV);
+
 if (process.env.NODE_ENV !== "development") {
+    console.log("NODE_SERVER_DOMAIN: ", process.env.NODE_SERVER_DOMAIN);
     sessionOptions.proxy = true;
+    sessionOptions.cookie = {
+        sameSite: "none",
+        secure: true,
+        domain: process.env.NODE_SERVER_DOMAIN,
+    };
 }
 
-if (process.env.NODE_ENV !== "development") {
-    app.set("trust proxy", 1);
-}
-
-
-app.use(session(sessionOptions));
-
-app.use((req, res, next) => {
-    console.log("Session ID: ", req.sessionID);
-    console.log("Session Data: ", req.session);
-    next();
-});
 
 app.use(express.json());
 
