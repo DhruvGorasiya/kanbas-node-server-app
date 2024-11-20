@@ -32,7 +32,7 @@ if (process.env.NODE_ENV !== "development") {
         sameSite: "none",
         secure: true,
         httpOnly: true,
-        domain: process.env.NODE_SERVER_DOMAIN,
+        // domain: process.env.NODE_SERVER_DOMAIN,
     };
 }
 
