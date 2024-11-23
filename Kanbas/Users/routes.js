@@ -72,7 +72,7 @@ export default function UserRoutes(app) {
     const findCoursesForEnrolledUser = (req, res) => {
         let { userId } = req.params;
         if (userId === "current") {
-            console.log(req.session["currentUser"]);
+            console.log("current courses for the user: ",req.session["currentUser"]);
             const currentUser = req.session["currentUser"];
             console.log("new current user", currentUser)
             if (!currentUser) {
