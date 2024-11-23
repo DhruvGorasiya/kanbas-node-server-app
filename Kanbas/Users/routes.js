@@ -37,7 +37,6 @@ export default function UserRoutes(app) {
         const { username, password } = req.body;
         const currentUser = dao.findUserByCredentials(username, password);
         req.session["currentUser"] = currentUser;
-        console.log(req.session["currentUser"])
         res.json(currentUser);
     
         // const { username, password } = req.body;
@@ -61,7 +60,6 @@ export default function UserRoutes(app) {
 
     const profile = async (req, res) => {
         const currentUser = req.session["currentUser"];
-        console.log("profile", currentUser)
         if (!currentUser) {
             res.sendStatus(401);
             return;
@@ -72,8 +70,8 @@ export default function UserRoutes(app) {
     const findCoursesForEnrolledUser = (req, res) => {
         let { userId } = req.params;
         if (userId === "current") {
+            console.log(req.session["currentUser"]);
             const currentUser = req.session["currentUser"];
-            console.log("new current user", currentUser)
             if (!currentUser) {
                 res.sendStatus(401);
                 return;
